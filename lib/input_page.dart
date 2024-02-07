@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -23,10 +24,16 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(colour: reusableCardColor),
+                  child: ReusableCard(
+                    colour: reusableCardColor,
+                    cardChild: CardIcon(icon: FontAwesomeIcons.mars, iconText: 'MALE'),
+                  ),
                 ),
                 Expanded(
-                  child: ReusableCard(colour: reusableCardColor),
+                  child: ReusableCard(
+                    colour: reusableCardColor,
+                    cardChild: CardIcon(iconText: 'FEMALE', icon: FontAwesomeIcons.venus)
+                  ),
                 )
               ],
             )
@@ -54,6 +61,34 @@ class _InputPageState extends State<InputPage> {
           ),
         ]
       ),
+    );
+  }
+}
+
+class CardIcon extends StatelessWidget {
+  const CardIcon ({ required String this.iconText, required IconData this.icon });
+  final String iconText;
+  final IconData icon;
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          icon,
+          size: 80,
+        ),
+        SizedBox(height: 15),
+        Text(
+          iconText,
+          style: TextStyle(
+            fontSize: 18,
+            color: Color(0xFF8D8E98)
+          ),
+        )
+      ],
     );
   }
 }
