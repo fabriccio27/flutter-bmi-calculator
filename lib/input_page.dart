@@ -16,7 +16,7 @@ const bottonContainerColor = Color(0xFFEB1555);
 const bottonContainerHeight = 80.0;
 
 class _InputPageState extends State<InputPage> {
-  late Genders activeGender;
+  Genders? activeGender;
 
   @override
   Widget build(BuildContext context) {
@@ -31,38 +31,34 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    child: ReusableCard(
-                      colour: activeGender == Genders.male ? activeCardColor : inactiveCardColor,
-                      cardChild: CardIcon(icon: FontAwesomeIcons.mars, iconText: 'MALE'),
-                    ),
-                    onTap: () {
+                  child: ReusableCard(
+                    colour: activeGender == Genders.male ? activeCardColor : inactiveCardColor,
+                    cardChild: CardIcon(icon: FontAwesomeIcons.mars, iconText: 'MALE'),
+                    onTapHandler: () {
                       setState(() {
-                        activeGender = Genders.male;
+                        activeGender  =Genders.male;
                       });
                     },
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    child: ReusableCard(
-                      colour: activeGender == Genders.female ?  activeCardColor: inactiveCardColor,
-                      cardChild: CardIcon(iconText: 'FEMALE', icon: FontAwesomeIcons.venus)
-                    ),
-                    onTap: () {
+                  child: ReusableCard(
+                    colour: activeGender == Genders.female ?  activeCardColor: inactiveCardColor,
+                    cardChild: CardIcon(iconText: 'FEMALE', icon: FontAwesomeIcons.venus),
+                    onTapHandler: () {
                       setState(() {
                         activeGender = Genders.female;
                       });
-                    }
+                    },
                   ),
                 )
               ],
             )
           ),
-          Expanded(
+          /* Expanded(
             child: ReusableCard(colour: activeCardColor)
-          ),
-          Expanded(
+          ), */
+          /* Expanded(
             child: Row(
               children: [
                 Expanded(
@@ -73,7 +69,7 @@ class _InputPageState extends State<InputPage> {
                 )
               ],
             )
-          ),
+          ), */
           Container(
               color: bottonContainerColor,
               margin: const EdgeInsetsDirectional.only(top: 10.0),
