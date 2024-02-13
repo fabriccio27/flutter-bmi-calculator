@@ -9,11 +9,30 @@ class InputPage extends StatefulWidget {
   _InputPageState createState() => _InputPageState();
 }
 
-const reusableCardColor = Color(0xFF1D1E33);
+enum Genders { male, female, }
+const activeCardColor = Color(0xFF1D1E33);
+const inactiveCardColor = Color(0xFF111328);
 const bottonContainerColor = Color(0xFFEB1555);
 const bottonContainerHeight = 80.0;
 
 class _InputPageState extends State<InputPage> {
+  Color maleCardColour = inactiveCardColor;
+  Color femaleCardColour = inactiveCardColor;
+
+  void activateCard(Genders gender) {
+    if (gender == Genders.male) {
+      if (maleCardColour == inactiveCardColor) {
+        maleCardColour = activeCardColor;
+        femaleCardColour = inactiveCardColor;
+      }
+    } else {
+      if (femaleCardColour == inactiveCardColor) {
+        femaleCardColour = activeCardColor;
+        maleCardColour = inactiveCardColor;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,31 +46,45 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(
-                    colour: reusableCardColor,
-                    cardChild: CardIcon(icon: FontAwesomeIcons.mars, iconText: 'MALE'),
+                  child: GestureDetector(
+                    child: ReusableCard(
+                      colour: activeCardColor,
+                      cardChild: CardIcon(icon: FontAwesomeIcons.mars, iconText: 'MALE'),
+                    ),
+                    onTap: () {
+                      setState(() {
+                        activateCard(Genders.male);
+                      });
+                    },
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(
-                    colour: reusableCardColor,
-                    cardChild: CardIcon(iconText: 'FEMALE', icon: FontAwesomeIcons.venus)
+                  child: GestureDetector(
+                    child: ReusableCard(
+                      colour: activeCardColor,
+                      cardChild: CardIcon(iconText: 'FEMALE', icon: FontAwesomeIcons.venus)
+                    ),
+                    onTap: () {
+                      setState(() {
+                        activateCard(Genders.female);
+                      });
+                    }
                   ),
                 )
               ],
             )
           ),
           Expanded(
-            child: ReusableCard(colour: reusableCardColor)
+            child: ReusableCard(colour: activeCardColor)
           ),
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(colour: reusableCardColor),
+                  child: ReusableCard(colour: activeCardColor),
                 ),
                 Expanded(
-                  child: ReusableCard(colour: reusableCardColor),
+                  child: ReusableCard(colour: activeCardColor),
                 )
               ],
             )
