@@ -16,22 +16,7 @@ const bottonContainerColor = Color(0xFFEB1555);
 const bottonContainerHeight = 80.0;
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColour = inactiveCardColor;
-  Color femaleCardColour = inactiveCardColor;
-
-  void activateCard(Genders gender) {
-    if (gender == Genders.male) {
-      if (maleCardColour == inactiveCardColor) {
-        maleCardColour = activeCardColor;
-        femaleCardColour = inactiveCardColor;
-      }
-    } else {
-      if (femaleCardColour == inactiveCardColor) {
-        femaleCardColour = activeCardColor;
-        maleCardColour = inactiveCardColor;
-      }
-    }
-  }
+  late Genders activeGender;
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +33,12 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     child: ReusableCard(
-                      colour: activeCardColor,
+                      colour: activeGender == Genders.male ? activeCardColor : inactiveCardColor,
                       cardChild: CardIcon(icon: FontAwesomeIcons.mars, iconText: 'MALE'),
                     ),
                     onTap: () {
                       setState(() {
-                        activateCard(Genders.male);
+                        activeGender = Genders.male;
                       });
                     },
                   ),
@@ -61,12 +46,12 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: GestureDetector(
                     child: ReusableCard(
-                      colour: activeCardColor,
+                      colour: activeGender == Genders.female ?  activeCardColor: inactiveCardColor,
                       cardChild: CardIcon(iconText: 'FEMALE', icon: FontAwesomeIcons.venus)
                     ),
                     onTap: () {
                       setState(() {
-                        activateCard(Genders.female);
+                        activeGender = Genders.female;
                       });
                     }
                   ),
