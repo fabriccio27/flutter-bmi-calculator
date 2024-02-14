@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'constants.dart';
 import 'card_icon.dart';
 import 'reusable_card.dart';
 
@@ -10,10 +11,6 @@ class InputPage extends StatefulWidget {
 }
 
 enum Genders { male, female, }
-const activeCardColor = Color(0xFF1D1E33);
-const inactiveCardColor = Color(0xFF111328);
-const bottonContainerColor = Color(0xFFEB1555);
-const bottonContainerHeight = 80.0;
 
 class _InputPageState extends State<InputPage> {
   Genders? activeGender;
@@ -32,7 +29,7 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    colour: activeGender == Genders.male ? activeCardColor : inactiveCardColor,
+                    colour: activeGender == Genders.male ? kActiveCardColor : kInactiveCardColor,
                     cardChild: CardIcon(icon: FontAwesomeIcons.mars, iconText: 'MALE'),
                     onTapHandler: () {
                       setState(() {
@@ -43,7 +40,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    colour: activeGender == Genders.female ?  activeCardColor: inactiveCardColor,
+                    colour: activeGender == Genders.female ?  kActiveCardColor: kInactiveCardColor,
                     cardChild: CardIcon(iconText: 'FEMALE', icon: FontAwesomeIcons.venus),
                     onTapHandler: () {
                       setState(() {
@@ -55,9 +52,17 @@ class _InputPageState extends State<InputPage> {
               ],
             )
           ),
-          /* Expanded(
-            child: ReusableCard(colour: activeCardColor)
-          ), */
+          Expanded(
+            child: ReusableCard(
+              colour: kActiveCardColor,
+              cardChild: Column(
+                children: [
+                  Text('HEIGHT', style: kLabelTextStyle,)
+                ],
+              ),
+              onTapHandler: (){},
+            ),
+          ),
           /* Expanded(
             child: Row(
               children: [
@@ -71,10 +76,10 @@ class _InputPageState extends State<InputPage> {
             )
           ), */
           Container(
-              color: bottonContainerColor,
+              color: kBottomContainerColor,
               margin: const EdgeInsetsDirectional.only(top: 10.0),
               width: double.infinity,
-              height: bottonContainerHeight,
+              height: kBottomContainerHeight,
           ),
         ]
       ),
