@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+void printer() {
+  print('I was tapped');
+}
 
 class ReusableCard extends StatelessWidget {
-  ReusableCard({required Color this.colour, required Widget this.cardChild, required Function this.onTapHandler });
+  ReusableCard({required Color this.colour, required Widget this.cardChild, this.onTapHandler = printer});
   final Color colour;
   final Widget cardChild;
-  final Function onTapHandler;
+  final VoidCallback onTapHandler;
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +20,7 @@ class ReusableCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10)
         ),
       ),
-      onTap: () {
-        onTapHandler();
-      },
+      onTap: onTapHandler,
     );
   }
 }
