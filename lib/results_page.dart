@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/big_bottom_button.dart';
 import 'package:flutter/material.dart';
 import 'input_page.dart';
 import 'constants.dart';
@@ -14,6 +15,7 @@ class ResultsPage extends StatelessWidget {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
             child: Text(
@@ -24,28 +26,22 @@ class ResultsPage extends StatelessWidget {
           Expanded(
             child: ReusableCard(
               colour: kActiveCardColor,
-              cardChild: Container()
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  
+                ],
+              )
             ),
             flex: 5
           ),
           Expanded(
-            child: GestureDetector(
-              child: Container(
-                child: Center(
-                  child: Text(
-                    'RECALCULATE',
-                    style: largeButtonTextStyle
-                  ),
-                ),
-                color: kBottomContainerColor,
-                margin: const EdgeInsetsDirectional.only(top: 10.0),
-                padding: EdgeInsets.only(bottom: 20.0),
-                width: double.infinity,
-                height: kBottomContainerHeight,
-              ),
-              onTap: (){
+            child: BigBottomButton(
+              onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => InputPage()));
               },
+              mainText: 'RE-CALCULATE'
             ),
           )
         ],

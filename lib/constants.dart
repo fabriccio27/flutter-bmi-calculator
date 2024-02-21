@@ -23,3 +23,17 @@ const titleTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
   color: Colors.white
 );
+const resultTextStyle = TextStyle(
+  color: Color(0xFF24D8776),
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold
+);
+const bmiTextStyle = TextStyle(
+  fontSize: 100.0,
+  fontWeight: FontWeight.bold,
+  color: Colors.white
+);
+const bodyTextStyle = TextStyle(
+  fontSize: 22.0,
+  color: Colors.white70
+);

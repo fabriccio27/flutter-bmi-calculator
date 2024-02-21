@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'constants.dart';
 import 'card_icon.dart';
 import 'reusable_card.dart';
+import 'big_bottom_button.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -186,20 +187,8 @@ class _InputPageState extends State<InputPage> {
               ],
             )
           ),
-          GestureDetector(
-            child: Container(
-              child: Center(
-                child: Text(
-                  'CALCULATE',
-                  style: largeButtonTextStyle,
-                ),
-              ),
-              color: kBottomContainerColor,
-              margin: const EdgeInsetsDirectional.only(top: 10.0),
-              padding: EdgeInsets.only(bottom: 20.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-            ),
+          BigBottomButton(
+            mainText: 'CALCULATE',
             onTap: () {
               Navigator.push(
                 context,
@@ -212,6 +201,8 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
+
+
 
 class RoundIconButton extends StatelessWidget {
   RoundIconButton({required this.icon, required this.onPressed});
