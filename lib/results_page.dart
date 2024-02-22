@@ -5,7 +5,11 @@ import 'constants.dart';
 import 'reusable_card.dart';
 
 class ResultsPage extends StatelessWidget {
-  const ResultsPage({Key? key}) : super(key: key);
+  const ResultsPage({ required this.bmiInterpretation, required this.bmiResult, required this.bmiString});
+
+  final String bmiString;
+  final String bmiResult;
+  final String bmiInterpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +22,13 @@ class ResultsPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Expanded(
-            child: Text(
-              'Your result',
-              style: titleTextStyle
+            child: Container(
+              padding:EdgeInsets.all(15.0),
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                'Your result',
+                style: titleTextStyle
+              ),
             ),
           ),
           Expanded(
@@ -30,7 +38,18 @@ class ResultsPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  
+                  Text(
+                    bmiResult,
+                    style: resultTextStyle,
+                  ),
+                  Text(
+                    bmiString,
+                    style: bmiTextStyle
+                  ),
+                  Text(
+                    bmiInterpretation,
+                    style: bodyTextStyle,
+                  ),
                 ],
               )
             ),
